@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from "react-hook-form";
 import './App.css';
 
 function App() {
@@ -7,14 +8,19 @@ function App() {
   const [appleCounter, setAppleCounter] = React.useState(0);
   const [kiwiCounter, setKiwiCounter] = React.useState(0);
 
-  // reset counter
-  function resetCounters() {
-      setStrawberryCounter(0)
-      setBananaCounter(0)
-      setAppleCounter(0)
-      setKiwiCounter(0)
-  }
+  // const [checkedTerms, toggleCheckedTerms] = React.useState(false)
 
+    // reset counter
+    function resetCounters() {
+        setStrawberryCounter(0)
+        setBananaCounter(0)
+        setAppleCounter(0)
+        setKiwiCounter(0)
+    }
+
+  // react hook form
+  const { register, handleSubmit, errors } = useForm()
+  const onSubmit = data => console.log(data)
 
   return (
       <>
@@ -94,63 +100,88 @@ function App() {
             </button>
         </div>
 
-        <div className="form-container">
-            <form>
-                <label> Voornaam
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder=""
-                    />
-                </label>
-                <label>Achternaam
-                    <input
-                        type="text"
-                        name="lastName"
-                    />
-                </label>
-                <label> Leeftijd
-                    <input
-                        type="number"
-                        name="age"
-                    />
-                </label>
-                <label> Postcode
-                    <input
-                        type="text"
-                        name="zipcode"
-                    />
-                </label>
-                <p>Bezorgfrequentie</p>
-                <label htmlFor="time">
-                    <input
-                        type="radio"
-                        name="time"
-                        id="everyWeek"
-                        value="weekly"
-                    />Iedere week
-                </label>
-                <label htmlFor="time">
-                    <input
-                        type="radio"
-                        name="time"
-                        value=""
-                    />Om de week
-                </label>
-                <label htmlFor="time">
-                    <input
-                        type="radio"
-                        name="time"
-                        value=""
-                    />Iedere maand
-                </label>
-                <label htmlFor="time">
-                    <input
-                        type="radio"
-                        name="time"
-                        value=""
-                    />Anders
-                </label>
+        {/*het formulier    */}
+        <div>
+            <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
+                <div className="persoonsgegevens">
+                    <label> Voornaam
+                        <input
+                            type="text"
+                            name="firstName"
+                            placeholder=""
+                            ref={register({ required: true})}
+                        />
+                    </label>
+                    <label>Achternaam
+                        <input
+                            type="text"
+                            name="lastName"
+                            ref={register({ required: true})}
+                        />
+                        {errors.lastName && "Verplicht invullen"}
+                    </label>
+                    <label> Leeftijd
+                        <input
+                            type="text"
+                            name="age"
+                            ref={register({ required: true, min: 18})}
+                        />
+                        {errors.age && "Je moet minimaal 18 jaar zijn"}
+                    </label>
+                    <label> Postcode
+                        <input
+                            type="text"
+                            name="zipcode"
+                            ref={register(
+                                { required: true})}
+                        />
+                    </label>
+                    <label> Huisnummer
+                        <input
+                            type="text"
+                            name="houseNumber"
+                            ref={register(
+                                { required: true})}
+                        />
+                    </label>
+                </div>
+
+                <div className="delivery">
+                    <label>Bezorgfrequentie</label>
+                    <label htmlFor="time">
+                        <input
+                            type="radio"
+                            name="time"
+                            id="everyWeek"
+                            value="weekly"
+                            ref={register({ required: true})}
+                        />Iedere week
+                    </label>
+                    <label htmlFor="time">
+                        <input
+                            type="radio"
+                            name="time"
+                            value="every other week"
+                            ref={register({ required: true})}
+                        />Om de week
+                    </label>
+                    <label htmlFor="time">
+                        <input
+                            type="radio"
+                            name="time"
+                            value="every month"
+                            ref={register({ required: true})}
+                        />Iedere maand
+                    </label>
+                    <label htmlFor="time">
+                        <input
+                            type="radio"
+                            name="time"
+                            value="other"
+                            ref={register({ required: true})}
+                        />Anders
+                    </label>
+                </div>
                 <p>Opmerking</p>
                 <label htmlFor="comment-field">
                     <textarea
@@ -162,11 +193,20 @@ function App() {
                     >
                     </textarea>
                 </label>
-                <label>
-                    <input type="checkbox"/>Ik ga akkoord met de voorwaarden
+                <label htmlFor="terms-and-conditions">
+                    <input
+                        type="checkbox"
+                        name="terms-and-conditions"
+                        id="terms-and-conditions"
+                        // checked={checkedTerms}
+                        // onChange={() => toggleCheckedTerms(!checkedTerms)}
+                    />
+                    Ik ga akkoord met de voorwaarden
                 </label>
                 <button
+                    // disabled={!checkedTerms}
                     type="submit"
+                    id="submit-button"
                 >Verzend</button>
             </form>
         </div>
