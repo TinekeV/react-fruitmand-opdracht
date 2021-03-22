@@ -3,6 +3,15 @@ body {
     justify-content: center;
 }
 
+h1 {
+    font-family: 'Lobster', sans-serif;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
 .strawberries-container {
     background-color: #eab3b3;
     border: solid #cf6969 2px;
@@ -14,6 +23,11 @@ body {
     margin: 10px;
     padding: 10px;
 }
+
+.underline {
+    text-decoration: underline;
+}
+
 
 .bananas-container {
     background-color: #faf0b3;
@@ -53,6 +67,9 @@ body {
 
 #min-button, #plus-button {
     height: 25px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 }
 
 .reset-container {
@@ -65,28 +82,57 @@ body {
     background-color: #a1cbe5;
     border: solid #69acd6 2px;
     border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 
     display: flex;
     flex-direction: column;
 
     padding: 20px;
-    margin-top: 50px;
-    width: 400px;
+    margin: 30px;
+    width: auto;
 }
 
-.persoonsgegevens{
+.personalData {
     display: flex;
     flex-direction: column;
 }
 
-.delivery{
+#first-name-field, #last-name-field, #age-field, #zipcode-field, #house-number-field {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.deliveryTime {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
 }
 
-#submit-button {
-    width: 70px;
+
+#submit-button, #reset-button {
+    width: 80px;
+    padding: 8px;
     margin-top: 20px;
     align-self: center;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+::-webkit-input-placeholder {
+    font-family: 'Roboto', sans-serif;
+    opacity: 50%;
+}
+
+#comment-field {
+    font-family: 'Roboto', sans-serif;
+}
+
+.error-message {
+    color: #e30b0b;
+    font-size: 12px;
+    font-weight: bold;
 }

@@ -19,28 +19,38 @@ function App() {
     }
 
   // react hook form
-  const { register, handleSubmit, errors } = useForm()
-  const onSubmit = data => console.log(data)
+    const { register, handleSubmit, errors, watch } = useForm(
+        {
+            mode: 'onChange'
+        }
+    )
+    // const onSubmit = data => console.log(data)
+    const selectedOtherDelivery = watch('delivery')
+
+    function onSubmit(data) {
+        console.log(data)
+        console.log(`Ik wil graag: ${strawberryCounter} aardbeien, ${bananaCounter} bananen, ${appleCounter} appels en ${kiwiCounter} kiwi's`)
+    }
+
+
 
   return (
       <>
         <h1>Fruitmand bezorgservice</h1>
         <div className="strawberries-container">
-            <h3 className="strawberries-item">🍓 Aardbeien</h3>
+            <h3>🍓 Aardbeien</h3>
 
             <button
-                className="strawberries-item"
                 id="min-button"
                 type="button"
                 onClick={() => setStrawberryCounter(strawberryCounter - 1)}
             > -
             </button>
-            <h3 className="strawberries-item">{strawberryCounter}</h3>
+            <h3 className={strawberryCounter > 0 ? 'underline' : ''}>{strawberryCounter}</h3>
             <button
-            className="strawberries-item"
-            id="plus-button"
-            type="button"
-            onClick={() => setStrawberryCounter(strawberryCounter + 1)}
+                id="plus-button"
+                type="button"
+                onClick={() => setStrawberryCounter(strawberryCounter + 1)}
             > +
             </button>
         </div>
@@ -52,7 +62,7 @@ function App() {
                 onClick={() => setBananaCounter(bananaCounter - 1)}
             > -
             </button>
-            <h3>{bananaCounter}</h3>
+            <h3 className={bananaCounter > 0 ? 'underline' : ''}>{bananaCounter}</h3>
             <button
                 id="plus-button"
                 type="button"
@@ -68,7 +78,7 @@ function App() {
                 onClick={() => setAppleCounter(appleCounter - 1)}
             > -
             </button>
-            <h3>{appleCounter}</h3>
+            <h3 className={appleCounter > 0 ? 'underline' : ''}>{appleCounter}</h3>
             <button
                 id="plus-button"
                 type="button"
@@ -84,7 +94,7 @@ function App() {
                 onClick={() => setKiwiCounter(kiwiCounter - 1)}
             > -
             </button>
-            <h3>{kiwiCounter}</h3>
+            <h3 className={kiwiCounter > 0 ? 'underline' : ''}>{kiwiCounter}</h3>
             <button
                 id="plus-button"
                 type="button"
@@ -94,6 +104,7 @@ function App() {
         </div>
         <div className="reset-container">
             <button
+                type="button"
                 id="reset-button"
                 onClick={resetCounters}
             > Reset
@@ -101,87 +112,105 @@ function App() {
         </div>
 
         {/*het formulier    */}
-        <div>
+        <h1>Bestelformulier</h1>
             <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
-                <div className="persoonsgegevens">
-                    <label> Voornaam
+                <div className="personalData">
+                    <label htmlFor="first-name-field">Voornaam
                         <input
                             type="text"
+                            id="first-name-field"
                             name="firstName"
-                            placeholder=""
                             ref={register({ required: true})}
                         />
+                        {errors.firstName && <span className="error-message">Verplicht invullen</span>}
                     </label>
-                    <label>Achternaam
+                    <label htmlFor="last-name-field">Achternaam
                         <input
                             type="text"
+                            id="last-name-field"
                             name="lastName"
                             ref={register({ required: true})}
                         />
-                        {errors.lastName && "Verplicht invullen"}
+                        {errors.lastName && <span className="error-message">Verplicht invullen</span>}
                     </label>
-                    <label> Leeftijd
+                    <label htmlFor="age-field"> Leeftijd
                         <input
                             type="text"
+                            id="age-field"
                             name="age"
                             ref={register({ required: true, min: 18})}
                         />
-                        {errors.age && "Je moet minimaal 18 jaar zijn"}
+                        {errors.age && <span className="error-message">Je moet minimaal 18 jaar zijn</span>}
                     </label>
-                    <label> Postcode
+                    <label htmlFor="zipcode-field"> Postcode
                         <input
                             type="text"
+                            id="zipcode-field"
                             name="zipcode"
-                            ref={register(
-                                { required: true})}
+                            ref={register({ required: true, pattern: /^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i})}
                         />
+                        {errors.zipcode && <span className="error-message">Vul volgens het juiste format in: 1234AA</span>}
                     </label>
-                    <label> Huisnummer
+                    <label htmlFor="house-number-field"> Huisnummer
                         <input
                             type="text"
+                            id="house-number-field"
                             name="houseNumber"
                             ref={register(
                                 { required: true})}
                         />
+                        {errors.houseNumber && <span className="error-message">Verplicht invullen</span>}
                     </label>
                 </div>
 
-                <div className="delivery">
-                    <label>Bezorgfrequentie</label>
-                    <label htmlFor="time">
+                <div className="deliveryTime">
+                    <p>Bezorgfrequentie</p>
+                    <label htmlFor="everyWeek">
                         <input
                             type="radio"
-                            name="time"
+                            name="delivery"
                             id="everyWeek"
                             value="weekly"
                             ref={register({ required: true})}
                         />Iedere week
                     </label>
-                    <label htmlFor="time">
+                    <label htmlFor="everyOtherWeek">
                         <input
                             type="radio"
-                            name="time"
+                            name="delivery"
+                            id="everyOtherWeek"
                             value="every other week"
                             ref={register({ required: true})}
                         />Om de week
                     </label>
-                    <label htmlFor="time">
+                    <label htmlFor="everyMonth">
                         <input
                             type="radio"
-                            name="time"
+                            name="delivery"
+                            id="everyMonth"
                             value="every month"
                             ref={register({ required: true})}
                         />Iedere maand
                     </label>
-                    <label htmlFor="time">
+                    <label htmlFor="other">
                         <input
                             type="radio"
-                            name="time"
+                            name="delivery"
+                            id="other"
                             value="other"
                             ref={register({ required: true})}
                         />Anders
                     </label>
+                    {selectedOtherDelivery === 'other' && (
+                        <input
+                            type="text"
+                            name='other-delivery-option'
+                            placeholder="Vul hier je eigen voorgestelde bezorgfrequentie in"
+                            ref={register({required: true})}/>
+                    )}
+                    {errors.delivery && <span className="error-message">Verplicht invullen</span>}
                 </div>
+
                 <p>Opmerking</p>
                 <label htmlFor="comment-field">
                     <textarea
@@ -198,18 +227,14 @@ function App() {
                         type="checkbox"
                         name="terms-and-conditions"
                         id="terms-and-conditions"
-                        // checked={checkedTerms}
-                        // onChange={() => toggleCheckedTerms(!checkedTerms)}
                     />
                     Ik ga akkoord met de voorwaarden
                 </label>
                 <button
-                    // disabled={!checkedTerms}
                     type="submit"
                     id="submit-button"
                 >Verzend</button>
             </form>
-        </div>
       </>
   );
 }
