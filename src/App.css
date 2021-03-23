@@ -12,52 +12,32 @@ h3 {
     font-family: 'Roboto', sans-serif;
 }
 
+/*fruit counters css*/
 .strawberries-container {
     background-color: #eab3b3;
     border: solid #cf6969 2px;
     border-radius: 10px;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: baseline;
-    margin: 10px;
-    padding: 10px;
 }
-
-.underline {
-    text-decoration: underline;
-}
-
 
 .bananas-container {
     background-color: #faf0b3;
     border: solid #e5ce3b 2px;
     border-radius: 10px;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: baseline;
-    margin: 10px;
-    padding: 10px;
 }
 
 .apples-container {
     background-color: #cee3c0;
     border: solid #82d754 2px;
     border-radius: 10px;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: baseline;
-    margin: 10px;
-    padding: 10px;
 }
 
 .kiwis-container {
     background-color: #718c6a;
     border: solid #29511b 2px;
     border-radius: 10px;
+}
 
+.strawberries-container, .bananas-container, .apples-container, .kiwis-container {
     display: flex;
     justify-content: space-evenly;
     align-items: baseline;
@@ -78,6 +58,11 @@ h3 {
     margin-top: 20px
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+/*formulier css*/
 .form-container {
     background-color: #a1cbe5;
     border: solid #69acd6 2px;
@@ -93,19 +78,16 @@ h3 {
     width: auto;
 }
 
-.personalData {
+.personalData, .deliveryTime {
     display: flex;
     flex-direction: column;
 }
 
 #first-name-field, #last-name-field, #age-field, #zipcode-field, #house-number-field {
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-left: 25px;
 }
 
 .deliveryTime {
-    display: flex;
-    flex-direction: column;
     margin-top: 20px;
 }
 

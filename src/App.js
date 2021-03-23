@@ -8,9 +8,7 @@ function App() {
   const [appleCounter, setAppleCounter] = React.useState(0);
   const [kiwiCounter, setKiwiCounter] = React.useState(0);
 
-  // const [checkedTerms, toggleCheckedTerms] = React.useState(false)
-
-    // reset counter
+  // reset counter
     function resetCounters() {
         setStrawberryCounter(0)
         setBananaCounter(0)
@@ -24,15 +22,12 @@ function App() {
             mode: 'onChange'
         }
     )
-    // const onSubmit = data => console.log(data)
     const selectedOtherDelivery = watch('delivery')
 
     function onSubmit(data) {
         console.log(data)
         console.log(`Ik wil graag: ${strawberryCounter} aardbeien, ${bananaCounter} bananen, ${appleCounter} appels en ${kiwiCounter} kiwi's`)
     }
-
-
 
   return (
       <>
