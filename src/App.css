@@ -1,0 +1,120 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Lobster', sans-serif;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+/*fruit counters css*/
+.strawberries-container {
+    background-color: #eab3b3;
+    border: solid #cf6969 2px;
+    border-radius: 10px;
+}
+
+.bananas-container {
+    background-color: #faf0b3;
+    border: solid #e5ce3b 2px;
+    border-radius: 10px;
+}
+
+.apples-container {
+    background-color: #cee3c0;
+    border: solid #82d754 2px;
+    border-radius: 10px;
+}
+
+.kiwis-container {
+    background-color: #718c6a;
+    border: solid #29511b 2px;
+    border-radius: 10px;
+}
+
+.strawberries-container, .bananas-container, .apples-container, .kiwis-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin: 10px;
+    padding: 10px;
+}
+
+#min-button, #plus-button {
+    height: 25px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+.reset-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+/*formulier css*/
+.form-container {
+    background-color: #a1cbe5;
+    border: solid #69acd6 2px;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    margin: 30px;
+    width: auto;
+}
+
+.personalData, .deliveryTime {
+    display: flex;
+    flex-direction: column;
+}
+
+#first-name-field, #last-name-field, #age-field, #zipcode-field, #house-number-field {
+    margin-left: 25px;
+}
+
+.deliveryTime {
+    margin-top: 20px;
+}
+
+
+#submit-button, #reset-button {
+    width: 80px;
+    padding: 8px;
+    margin-top: 20px;
+    align-self: center;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+
+::-webkit-input-placeholder {
+    font-family: 'Roboto', sans-serif;
+    opacity: 50%;
+}
+
+#comment-field {
+    font-family: 'Roboto', sans-serif;
+}
+
+.error-message {
+    color: #e30b0b;
+    font-size: 12px;
+    font-weight: bold;
+}
