@@ -199,7 +199,7 @@ function App() {
                     {selectedOtherDelivery === 'other' && (
                         <input
                             type="text"
-                            name='other-delivery-option'
+                            name="other-delivery-option"
                             placeholder="Vul hier je eigen voorgestelde bezorgfrequentie in"
                             ref={register({required: true})}/>
                     )}
